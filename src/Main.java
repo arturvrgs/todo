@@ -17,33 +17,45 @@ public class Main {
            scan.nextLine();
 
            if (menuChoice == 1) {
+               limpaTela();
                addTask();
+               limpaTela();
            }
 
            if (menuChoice == 2) {
+               limpaTela();
                removeTask();
+               limpaTela();
            }
 
            if (menuChoice == 3) {
+               limpaTela();
                displayTasks();
+           }
+
+           if (menuChoice == 4) {
+               limpaTela();
+               markAsCompleted();
+               limpaTela();
            }
        }
     }
 
     public static void removeTask() {
-        displayTasks();
+            displayTasks();
 
-        Scanner scan = new Scanner(System.in);
+            Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter the task number to remove: ");
-        int removedTask = scan.nextInt();
+            System.out.println("Enter the task number to remove: ");
+            int removedTask = scan.nextInt();
 
-        if (removedTask < 0 || removedTask >= tasks.size()) {
-            System.out.println("Enter a valid task.");
-            return;
-        }
+            if (removedTask < 0 || removedTask >= tasks.size()) {
+                System.out.println("Enter a valid task.");
+                return;
+            }
 
-        tasks.remove(removedTask);
+            tasks.remove(removedTask);
+            limpaTela();
     }
 
     public static void displayTasks() {
@@ -61,7 +73,6 @@ public class Main {
     }
 
     public static void addTask() {
-
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter your task: ");
@@ -72,11 +83,33 @@ public class Main {
 
     public static void displayMenu() {
 
-        System.out.println("| -------MENU------- |");
-        System.out.println("| 1 - Add task       |");
-        System.out.println("| 2 - Remove task    |");
-        System.out.println("| 3 - Display tasks  |");
-        System.out.println("| ------------------ |");
+        System.out.println("| ----------MENU---------- |");
+        System.out.println("| 1 - Add task             |");
+        System.out.println("| 2 - Remove task          |");
+        System.out.println("| 3 - Display tasks        |");
+        System.out.println("| 4 - Mark completed task  |");
+        System.out.println("| ------------------------ |");
 
     }
-}
+
+    public static void markAsCompleted() {
+        displayTasks();
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter the task you want to mark as completed: ");
+        int markedTask = scan.nextInt();
+
+        if (markedTask < 0 || markedTask >= tasks.size()) {
+            System.out.println("Enter a valid task.");
+            return;
+        }
+        tasks.set(markedTask, tasks.get(markedTask).concat("  ✔✔"));
+    }
+
+    public static void limpaTela() {
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+        }
+    }
